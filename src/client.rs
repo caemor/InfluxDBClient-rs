@@ -1,6 +1,9 @@
 use bytes::Bytes;
 use futures::prelude::*;
+#[cfg(not(feature = "blocking"))]
 use reqwest::{Client as HttpClient, Response, Url};
+#[cfg(feature = "blocking")]
+use reqwest::blocking::{Client as HttpClient, Response, Url};
 use serde_json::de::IoRead;
 use std::{io::Cursor, iter::FromIterator, net::SocketAddr, net::UdpSocket};
 
